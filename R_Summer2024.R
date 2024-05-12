@@ -3,7 +3,7 @@
 fruit<- c("apple", "banana","lemon")
 price<- c(10, 20, 30)
 df<- data.frame(fruit, price) # okay
-df<- data.frame(c(fruit, price)) # it gives one column
+#df<- data.frame(c(fruit, price)) # it gives one column
 str(df)
 df[1,2]
 df[1,]
@@ -14,6 +14,7 @@ mean(df$price[2:3])
 #pipe
 library(dplyr)
 df %>% select(fruit)
+df %>% select(fruit)%>% slice(2:3)
 df$fruit
 
 
