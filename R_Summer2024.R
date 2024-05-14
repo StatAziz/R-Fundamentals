@@ -13,7 +13,7 @@ mean(df$price[2:3])
 
 #pipe
 library(dplyr)
-df %>% select(fruit)
+df %>% select(fruit)      # %>% read as "then do"
 df %>% select(fruit)%>% slice(2:3)
 df$fruit
 
@@ -57,4 +57,29 @@ new_df
 new_df<- replace(df$y, 3, .9)
 new_df
 
-#-------------------------------------------------------------------------------------------
+#----------5/14/2024--------------------------------------------------------------------
+
+#mutate function (from dplyr package to introduce/update variables in dataset)
+df<- data.frame(x= c(1,2,3,4), y= c(5,6,7,8))
+library(dplyr)
+df<- df %>% mutate(z=x+y)
+df
+df<- df%>% mutate(x=x+1)
+df
+
+#filter function
+df<- df%>% filter(z>9)
+df
+df%>% filter(z>9)%>%select(x,y)
+
+#subset function
+df<- data.frame(x= c(1,2,3,4), y= c(5,6,7,8))
+df<- df %>% mutate(z=x+y)
+df<- df%>% filter(z>9)
+df<- df%>% subset(z>9)
+df
+df1<- df%>% filter(x==1 & z==6)       #they give same results, differ in speed for large datasets and subset require
+                                      # no library.
+df1<- df%>% subset(x==1 & z==6)
+
+#--------------------------------------------------------------------------------------------
