@@ -82,4 +82,25 @@ df1<- df%>% filter(x==1 & z==6)       #they give same results, differ in speed f
                                       # no library.
 df1<- df%>% subset(x==1 & z==6)
 
-#--------------------------------------------------------------------------------------------
+#----------5/15/2024-----------------------------------------------------------------------
+library(ggplot2)
+library(dplyr)
+mtcars %>% ggplot(aes(x=hp, y=mpg, col = disp, ))+ geom_point()+
+labs(title = "mpg vs hp", x= "hp", y ="mpg")
+
+#adding facet_grid
+
+mtcars %>% ggplot(aes(x=hp, y=mpg, col = disp, shape=factor(cyl)))+ geom_point()+
+  labs(title = "mpg vs hp", x= "hp", y ="mpg") +facet_grid(.~cyl)
+
+
+#adding line
+mtcars %>% ggplot(aes(x=hp, y=mpg, col = disp, shape=factor(cyl)))+ geom_point()+
+  labs(title = "mpg vs hp", x= "hp", y ="mpg") +facet_grid(.~cyl) +geom_smooth(method=lm, col="red")
+#------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
