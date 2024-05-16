@@ -97,10 +97,55 @@ mtcars %>% ggplot(aes(x=hp, y=mpg, col = disp, shape=factor(cyl)))+ geom_point()
 #adding line
 mtcars %>% ggplot(aes(x=hp, y=mpg, col = disp, shape=factor(cyl)))+ geom_point()+
   labs(title = "mpg vs hp", x= "hp", y ="mpg") +facet_grid(.~cyl) +geom_smooth(method=lm, col="red")
-#------------------------------------------------------------------------------------------------------
+#----------5/16/2024----------------------------------------------------------------------------
+
+# for loop from geeksforgeeks
+for (i in 1: 4)
+{
+  print(i ^ 2)
+}
+
+# nested for loop
+for (i in 1:3)
+{
+  for (j in 1:i)
+  {
+    print(i * j)
+  }
+}
+# break in for loop
+for (i in c(3, 6, 23, 19, 0, 21))
+{
+  if (i == 0)
+  {
+    break
+  }
+  print(i)
+}
+print("Outside Loop")
+
+# next in for loop
+for (i in c(3, 6, 23, 19, 0, 21))
+{
+  if (i == 0)
+  {
+    next
+  }
+  print(i)
+}
+print('Outside Loop')
 
 
+# create a matrix of data
+mat <- matrix(rnorm(100), ncol = 5)
 
+# set up the plot layout
+par(mfrow = c(2, 3))
 
+# loop over columns of the matrix
+for (i in 1:5) {
+  # create a histogram for each column
+  hist(mat[, i], main = paste("Column", i), xlab = "Values", col = "lightblue")
+}
 
 
