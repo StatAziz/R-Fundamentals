@@ -138,6 +138,7 @@ print('Outside Loop')
 
 # create a matrix of data
 mat <- matrix(rnorm(100), ncol = 5)
+#mat<- as.data.frame(mat)
 
 # set up the plot layout
 par(mfrow = c(2, 3))
@@ -147,5 +148,70 @@ for (i in 1:5) {
   # create a histogram for each column
   hist(mat[, i], main = paste("Column", i), xlab = "Values", col = "lightblue")
 }
+#-----------5/17/2024---------------------------------------------------------------------------------------------
+
+# functions in R from https://www.tutorialspoint.com/r/r_functions.htm
+
+# Create user-defined function with arguments.
+f1 <- function(a,b,c) {
+  result <- a * b + c
+  print(result)
+}
+
+# Call the function by position of arguments.
+f1(5,3,11)
+
+# Create a function with arguments.
+f2 <- function(a = 3, b = 6) {
+  result <- a * b
+  print(result)
+}
+
+# Call the function without giving any argument.
+f2()
+
+# Call the function with giving new values of the argument.
+f2(9,5)
 
 
+# Create a function with arguments.
+f3 <- function(a, b) {
+  print(a^2)
+  print(a)
+  print(b)
+}
+
+# Evaluate the function without supplying one of the arguments.
+f3(6)
+
+# Create a function to print squares of numbers in sequence.
+f4 <- function(a) {
+  for(i in 1:a) {
+    b <- i^2
+    print(b)
+  }
+}
+f4(10)
+
+# Create a function to print squares of numbers in sequence.
+f5 <- function(a) {
+  for(i in 1:a) {
+    b <- i^2
+    print(b)
+  }
+}
+
+# Call the function new.function supplying 6 as an argument.
+f5(6)
+
+# Create a function without an argument.
+f6 <- function() {
+  for(i in 1:5) {
+    print(i^2)
+  }
+}	
+
+# Call the function without supplying an argument.
+f6()
+
+#-----------------------------------------------------------------------------------------------------
