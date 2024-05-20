@@ -285,4 +285,80 @@ if (x < 0) {
 } else
   print("Zero")
 
-#---------------------------------------------------------------------------------------
+#-----------------5/20/2024----------------------------------------------------------------------
+
+# while loop from https://www.geeksforgeeks.org/r-while-loop/
+# R program to illustrate while loop
+
+result <- c("Hello World")
+i <- 1
+
+# test expression 
+while (i < 6) {
+  
+  print(result)
+  
+  # update expression 
+  i = i + 1
+}
+
+# R program to illustrate while loop
+
+result <- 1
+i <- 1
+
+# test expression 
+while (i < 6) {
+  
+  print(result)
+  
+  # update expression 
+  i = i + 1
+  result = result + 1
+}
+
+# R program to illustrate while loop
+
+result <- c("Hello World")
+i <- 1
+
+# test expression
+while (i < 6) {
+  
+  print(result)
+  
+  if( i == 3){
+    break}
+  # update expression
+  i = i + 1
+}
+# while loop with next
+# Set an initial value for a variable
+x <- 1
+
+# Loop while x is less than 10
+while (x < 10) {
+  if (x == 3) {
+    # Skip iteration when x is 3
+    x <- x + 1
+    next
+  }
+  print(paste("The current value of x is:", x))
+  x <- x + 1
+}
+
+# Print a message after the loop has finished
+print("The loop has ended.")
+
+# while loop with if
+x <- 1
+
+while (x <= 10) {
+  if (x %% 2 == 0) {
+    print(paste(x, "is even"))
+  } else {
+    print(paste(x, "is odd"))
+  }
+  x <- x + 1
+}
+#------------------------5/21/2024------------------------------------------------------------
