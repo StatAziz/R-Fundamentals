@@ -252,4 +252,37 @@ data <- list(c(1, 2, 3),
 #calculate mean value of each vector in list
 data %>%
   map(mean, na.rm=TRUE)
-#---------------------------------------------------------------------------------------------
+
+#------------------5/19/2024----------------------------------------------------------------------
+# if statement from https://www.geeksforgeeks.org/r-if-statement/
+
+# R program to illustrate if statement
+# assigning value to variable a
+a <- -5
+
+# condition
+if(a > 0)
+{
+  print("Positive Number")  # Statement
+}else{
+  print("-ve number")
+}
+x <- 12
+
+# Condition
+if (x > 20)
+{
+  print("12 is less than 20")  # Statement
+}
+print("Hello World")
+
+# nested if else
+x <- 0
+if (x < 0) {
+  print("Negative number")
+} else if (x > 0) {
+  print("Positive number")
+} else
+  print("Zero")
+
+#---------------------------------------------------------------------------------------
