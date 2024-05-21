@@ -362,3 +362,54 @@ while (x <= 10) {
   x <- x + 1
 }
 #------------------------5/21/2024------------------------------------------------------------
+# with() function
+# Create a sample data frame
+
+# The with() function takes two main arguments:
+# data: A data frame or list in which to look for variables.
+# expr: An expression to be evaluated within the context of the data frame or list.
+# Syntax: with(data, expr)
+
+df <- data.frame(
+  a = c(1, 2, 3, 4, 5),
+  b = c(6, 7, 8, 9, 10)
+)
+
+# Using with() to calculate mean and standard deviation
+result <- with(df, {
+  mean_a <- mean(a)
+  sd_a <- sd(a)
+  mean_b <- mean(b)
+  sd_b <- sd(b)
+  list(mean_a = mean_a, sd_a = sd_a, mean_b = mean_b, sd_b = sd_b)
+})
+
+print(result)
+
+# plotting with with()
+# Create a sample data frame
+df <- data.frame(
+  x = rnorm(100),
+  y = rnorm(100)
+)
+
+# Using with() to plot data
+with(df, {
+  plot(x, y, main = "Scatter plot of x and y", xlab = "x", ylab = "y")
+})
+
+# using with() in more complex scenarios
+# Create a sample data frame
+df <- data.frame(
+  x = 1:10,
+  y = 2 * (1:10) + rnorm(10)
+)
+
+# Using with() for multiple operations
+result <- with(df, {
+  lm_result <- lm(y ~ x)  # Fit a linear model
+  summary(lm_result)      # Get the summary of the model
+})
+
+print(result)
+#-----------------------------5/22/2024------------------------------------------------------
