@@ -413,3 +413,52 @@ result <- with(df, {
 
 print(result)
 #-----------------------------5/22/2024------------------------------------------------------
+
+# nest() function in R
+#The nest() function in R, which is part of the tidyr package, is used to convert 
+# a data frame into a nested data frame. This is particularly useful for managing grouped data,
+# where you want to keep related observations together in a list-column.
+# Nested data frames are useful for performing operations within groups 
+# and can help simplify complex data manipulation tasks.
+
+# Syntax:
+#nest(.data, ..., .key = "data")
+# .data: A data frame.
+# ...: Columns to nest, typically columns that are not being grouped.
+# .key: Name of the new list-column created by nesting.
+
+library(tidyr)
+
+# Example data frame
+df <- data.frame(
+  group = rep(c("A", "B"), each = 3),
+  value1 = 1:6,
+  value2 = 6:1
+)
+
+print(df)
+
+# Nesting the data frame by 'group'
+nested_df <- df %>% nest(data = c(value1, value2))
+
+print(nested_df)
+
+# Access the nested data for group A
+nested_df$data[[1]]
+
+# operations on nested data
+library(purrr)
+
+# Calculate the mean of value1 and value2 for each group
+library(dplyr)
+means <- nested_df %>% 
+  mutate(mean_values = map(data, ~ summarise(.x, mean_value1 = mean(value1), mean_value2 = mean(value2))))
+
+print(means)
+
+# you can unnest if needed
+# Unnesting the means
+unnested_means <- means %>% unnest(mean_values)
+
+print(unnested_means)
+#-------------------------------5/23/2024---------------------------------------------------------
