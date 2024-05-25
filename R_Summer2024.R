@@ -550,3 +550,73 @@ eigen(M) # spectral decompostion of matrix
 ## [3,] 0.1840605  0.4540313  0.5247494
 
 #-----------------------------------5/24/2024-------------------------------
+# split and merge data
+data = expand.grid(meat = c("grade-1","grade-2","grade-3"), food = c("burger", "steak", "pizza"))
+data$value = round(rnorm(nrow(data)), 2)
+data
+##      meat   food value
+## 1 grade-1 burger  0.33
+## 2 grade-2 burger -0.60
+## 3 grade-3 burger  0.85
+## 4 grade-1  steak  0.92
+## 5 grade-2  steak  1.19
+## 6 grade-3  steak  0.77
+## 7 grade-1  pizza -0.60
+## 8 grade-2  pizza -0.39
+## 9 grade-3  pizza  0.88
+
+data_by_food = split(data, data$food)
+data_by_food
+## $burger
+##      meat   food value
+## 1 grade-1 burger  0.33
+## 2 grade-2 burger -0.60
+## 3 grade-3 burger  0.85
+## 
+## $steak
+##      meat  food value
+## 4 grade-1 steak  0.92
+## 5 grade-2 steak  1.19
+## 6 grade-3 steak  0.77
+## 
+## $pizza
+##      meat  food value
+## 7 grade-1 pizza -0.60
+## 8 grade-2 pizza -0.39
+## 9 grade-3 pizza  0.88
+
+class(data_by_food)
+## [1] "list"
+
+x = data.frame(ID = 1:6, Product = c(rep("TV", 3), rep("Mobile", 3)))
+x
+##   ID Product
+## 1  1      TV
+## 2  2      TV
+## 3  3      TV
+## 4  4  Mobile
+## 5  5  Mobile
+## 6  6  Mobile
+
+y = data.frame(ID = c(2,4,6), Made_in = c(rep("Japan", 2), rep("China", 1)))
+y
+##   ID Made_in
+## 1  2   Japan
+## 2  4   Japan
+## 3  6   China
+
+merge(x, y, by = "ID") # Inner join
+##   ID Product Made_in
+## 1  2      TV   Japan
+## 2  4  Mobile   Japan
+## 3  6  Mobile   China
+
+merge(x, y, by = "ID", all = TRUE) # Full outer join
+##   ID Product Made_in
+## 1  1      TV    <NA>
+## 2  2      TV   Japan
+## 3  3      TV    <NA>
+## 4  4  Mobile   Japan
+## 5  5  Mobile    <NA>
+## 6  6  Mobile   China
+#------------------------------------5/25/2024-----------------------------------
