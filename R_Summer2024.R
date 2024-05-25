@@ -620,3 +620,57 @@ merge(x, y, by = "ID", all = TRUE) # Full outer join
 ## 5  5  Mobile    <NA>
 ## 6  6  Mobile   China
 #------------------------------------5/25/2024-----------------------------------
+# join in R
+library(dplyr)
+
+# First data frame
+df1 <- data.frame(
+  id = c(1, 2, 3, 4),
+  name = c("Alice", "Bob", "Charlie", "David")
+)
+
+# Second data frame
+df2 <- data.frame(
+  id = c(2, 3, 4, 5),
+  score = c(90, 85, 88, 92)
+)
+
+#print("df1:")
+print(df1)
+#print("df2:")
+print(df2)
+# Left join
+left_joined_df <- left_join(df1, df2, by = "id")
+
+#print("Left Joined Data Frame:")
+print(left_joined_df)
+
+# Inner join
+inner_joined_df <- inner_join(df1, df2, by = "id")
+
+print("Inner Joined Data Frame:")
+print(inner_joined_df)
+
+
+#Example with tibble
+
+# Create data frames
+df1 <- tibble(
+  id = c(1, 2, 3, 4),
+  name = c("Alice", "Bob", "Charlie", "David")
+)
+
+df2 <- tibble(
+  id = c(2, 3, 4, 5),
+  score = c(90, 85, 88, 92)
+)
+
+# Left join
+left_joined_df <- df1 %>% left_join(df2, by = "id")
+#print("Left Joined Data Frame:")
+print(left_joined_df)
+
+# Inner join
+inner_joined_df <- df1 %>% inner_join(df2, by = "id")
+print("Inner Joined Data Frame:")
+print(inner_joined_df)
