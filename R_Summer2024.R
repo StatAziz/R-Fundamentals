@@ -674,3 +674,58 @@ print(left_joined_df)
 inner_joined_df <- df1 %>% inner_join(df2, by = "id")
 print("Inner Joined Data Frame:")
 print(inner_joined_df)
+#---------------------------------5/26/2024-------------------------------------
+# difference between data.frame() and tibble() 
+# 
+# data.frame() and tibble() are both functions in R for creating data frames,
+# but they have some differences in terms of functionality and behavior. data.frame() 
+# is a base R function, while tibble() is part of the tibble package, 
+# which is part of the tidyverse suite of packages. Here are the key differences:
+
+# data.frame(): By default, it prints the entire data frame.
+# tibble(): Prints a more compact and readable version of the data frame, 
+# showing only the first 10 rows and the columns 
+# that fit on the screen. This can be very helpful for large data frames.
+
+
+#printing
+df <- data.frame(x = 1:20, y = rnorm(20))
+print(df)
+
+library(tidyverse)
+tb <- tibble(x = 1:20, y = rnorm(20))
+print(tb)
+
+#Subsetting
+# data.frame
+df <- data.frame(x = 1:3, y = 4:6)
+print(df$x)  # Returns a vector
+
+# tibble
+tb <- tibble(x = 1:3, y = 4:6)
+print(tb$x)  # Returns a tibble
+
+# Column Data Types
+# data.frame(): Converts character vectors to factors by default.
+# tibble(): Keeps character vectors as character vectors.
+
+df <- data.frame(x = c("a", "b", "c"))
+str(df)  # x is a factor
+
+tb <- tibble(x = c("a", "b", "c"))
+str(tb)  # x is a character vector
+
+# Handling Non-Syntactic Names
+# data.frame(): Automatically converts non-syntactic names to syntactic names.
+# tibble(): Allows non-syntactic names (e.g., names with spaces or special characters)
+# but you need to use backticks to refer to them.
+
+df <- data.frame(`a b` = 1:3)
+print(names(df))  # Converts to syntactic names
+
+tb <- tibble(`a b` = 1:3)
+print(names(tb))  # Keeps non-syntactic names
+print(tb$`a b`)  # Access using backticks
+
+#--------------------------------5/27/2024------------------------------
+
