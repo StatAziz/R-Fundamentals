@@ -728,4 +728,40 @@ print(names(tb))  # Keeps non-syntactic names
 print(tb$`a b`)  # Access using backticks
 
 #--------------------------------5/27/2024------------------------------
+# Monte Carlo simulation to estimate the value of π
 
+# Number of random points to generate
+n <- 10000
+
+# Generate random points (x, y) in the unit square [0, 1] x [0, 1]
+x <- runif(n)
+y <- runif(n)
+
+# Calculate the distance of each point from the origin (0, 0)
+distance <- sqrt(x^2 + y^2)
+
+# Count the number of points inside the quarter circle (distance <= 1)
+inside_circle <- sum(distance <= 1)
+
+# Estimate the value of π
+# np= number of points
+# ratio of np in quarter circle to np of unit square = ratio of area of quarter circle to area unit area
+# inside_circle/ n = (pi/4)/1
+pi_estimate <- (inside_circle / n) * 4
+ 
+# Print the estimated value of π
+print(paste("Estimated value of π:", pi_estimate))
+
+# Optional: visualize the points and the quarter circle
+plot(x, y, col = ifelse(distance <= 1, "blue", "yellow"), asp = 1,
+     main = paste("Monte Carlo Simulation (n =", n, ")"),
+     xlab = "x", ylab = "y")
+#symbols(0, 0, circles = 1, add = TRUE, inches = FALSE, border = "red")
+library(plotrix)
+draw.circle(0, 0, 1, border = "green")
+
+#-------------------------------5/28/2024---------------------------------------------------
+# draw different shapes
+
+#-------------------------------5/29/2024-----------------------------------
+# write some common distributions
