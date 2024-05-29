@@ -763,5 +763,34 @@ draw.circle(0, 0, 1, border = "green")
 #-------------------------------5/28/2024---------------------------------------------------
 # draw different shapes
 
+#triangle
+
+x<- c(0, 1, 0.5) #ordering of coordinates does not matter for triangle
+y<- c(0, 0, 1)
+plot(x,y)
+polygon(x,y)
+
+x<- c(0, .5, 1)
+y<- c(0, 1, 0)
+plot(x,y)
+polygon(x,y)
+
+
+#tetragon
+# sequence of coordinates matter here
+x<- c(1, 1, 2, 2) #ordering of coordinates does not create close shape here
+y<- c(0, 1, 0, 1)
+plot(x,y)
+polygon(x,y)
+
+
+x<- c(1, 2, 2, 1) # here the ordering or sequence of coordinates create close shape
+y<- c(0, 0, 1, 1)
+plot(x,y)
+polygon(x,y)
+
+
+
+
 #-------------------------------5/29/2024-----------------------------------
 # write some common distributions
