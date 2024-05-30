@@ -803,6 +803,44 @@ symbols(0,0,.5, inches = FALSE)
 
 
 #-------------------------------5/30/2024-----------------------------------
+#draw a cube
+
+# Install and load the rgl package
+if (!require("rgl")) {
+  install.packages("rgl")
+  library(rgl)
+}
+
+# Define the vertices of a cube
+vertices <- rbind(
+  c(0, 0, 0),
+  c(1, 0, 0),
+  c(1, 1, 0),
+  c(0, 1, 0),
+  c(0, 0, 1),
+  c(1, 0, 1),
+  c(1, 1, 1),
+  c(0, 1, 1)
+)
+
+# Define the edges of the cube
+edges <- rbind(
+  c(1, 2), c(2, 3), c(3, 4), c(4, 1), # bottom square
+  c(5, 6), c(6, 7), c(7, 8), c(8, 5), # top square
+  c(1, 5), c(2, 6), c(3, 7), c(4, 8)  # vertical edges
+)
+
+# Plot the cube
+open3d()
+plot3d(vertices, type = "s", size = 0.1, xlab = "X", ylab = "Y", zlab = "Z")
+for (i in 1:nrow(edges)) {
+  segments3d(rbind(vertices[edges[i, 1], ], vertices[edges[i, 2], ]), col = "blue")
+}
+#-------------------------------------------------------------------------------------------
+
+
+
+
 # write some common distributions
 
 
