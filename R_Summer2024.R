@@ -789,8 +789,20 @@ y<- c(0, 0, 1, 1)
 plot(x,y)
 polygon(x,y)
 
+#---------------------5/29/2024-----------------------------------------
+# draw a line
+x<- c(2,0)
+y<- c(4,5)
+plot(x,y)
+polygon(x,y)
+
+#draw a circle
+symbols(0,0,.75, inches = FALSE) # without inches = False the circles will be same size.
+symbols(0,0,.5, inches = FALSE)
 
 
 
-#-------------------------------5/29/2024-----------------------------------
+#-------------------------------5/30/2024-----------------------------------
 # write some common distributions
+
+
