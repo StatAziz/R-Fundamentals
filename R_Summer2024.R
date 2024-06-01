@@ -836,7 +836,33 @@ plot3d(vertices, type = "s", size = 0.1, xlab = "X", ylab = "Y", zlab = "Z")
 for (i in 1:nrow(edges)) {
   segments3d(rbind(vertices[edges[i, 1], ], vertices[edges[i, 2], ]), col = "blue")
 }
-#-------------------------------------------------------------------------------------------
+#----------------------------5/31/2024---------------------------------------------------------------
+
+#datetime object in R
+
+# Create a Date object
+my_date <- as.Date("2024-05-25")
+print(my_date)
+
+# Create a POSIXct object
+my_datetime <- as.POSIXct("2024-05-25 12:34:56")
+print(my_datetime)
+
+# Create a POSIXlt object
+my_datetime_lt <- as.POSIXlt("2024-05-25 12:34:56")
+print(my_datetime_lt)
+
+
+print(my_datetime_lt$sec)   # seconds
+print(my_datetime_lt$min)   # minutes
+print(my_datetime_lt$hour)  # hours
+print(my_datetime_lt$mday)  # day of the month
+print(my_datetime_lt$mon)   # months since January (0-11)
+print(my_datetime_lt$year)  # years since 1900
+print(my_datetime_lt$wday)  # day of the week (0-6, Sunday is 0)
+print(my_datetime_lt$yday)  # day of the year (0-365)
+print(my_datetime_lt$isdst)
+
 
 
 
