@@ -862,9 +862,35 @@ print(my_datetime_lt$year)  # years since 1900
 print(my_datetime_lt$wday)  # day of the week (0-6, Sunday is 0)
 print(my_datetime_lt$yday)  # day of the year (0-365)
 print(my_datetime_lt$isdst)
+#---------------------------6/1/2024-------------------------------------
+#use of Lubridate
 
+# Install and load the lubridate package
+if (!require("lubridate")) {
+  install.packages("lubridate")
+  library(lubridate)
+}
 
+# Parse a date-time string
+my_datetime <- ymd_hms("2024-05-25 12:34:56")
+print(my_datetime)
 
+# Extract components
+year <- year(my_datetime)
+month <- month(my_datetime)
+day <- day(my_datetime)
+hour <- hour(my_datetime)
+minute <- minute(my_datetime)
+second <- second(my_datetime)
+
+print(paste("Year:", year))
+print(paste("Month:", month))
+print(paste("Day:", day))
+print(paste("Hour:", hour))
+print(paste("Minute:", minute))
+print(paste("Second:", second))
+
+#-------------------------------------------2/6/2024---------------------------
 
 
 # write some common distributions
