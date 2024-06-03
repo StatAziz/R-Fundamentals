@@ -891,7 +891,57 @@ print(paste("Minute:", minute))
 print(paste("Second:", second))
 
 #-------------------------------------------2/6/2024---------------------------
+#while loop in R
+#basic structure
+while (condition) {
+  # Code to execute
+}
 
+# Initialize a counter variable
+counter <- 1
+
+# Start the while loop
+while (counter <= 5) {
+  # Print the current value of the counter
+  print(counter)
+  
+  # Increment the counter by 1
+  counter <- counter + 1
+}
+# Initialize a counter variable
+counter <- 1
+
+# Start the while loop
+while (TRUE) {
+  # Print the current value of the counter
+  print(counter)
+  
+  # Increment the counter by 1
+  counter <- counter + 1
+  
+  # Break the loop if counter exceeds 5
+  if (counter > 5) {
+    break
+  }
+}
+# Initialize a counter variable
+counter <- 1
+
+# Start the while loop
+while (counter <= 5) {
+  # Skip even numbers
+  if (counter %% 2 == 0) {
+    counter <- counter + 1
+    next
+  }
+  
+  # Print the current value of the counter
+  print(counter)
+  
+  # Increment the counter by 1
+  counter <- counter + 1
+}
+#---------------------------------------------3/6/2024-------------------------------
 
 # write some common distributions
 
