@@ -942,7 +942,47 @@ while (counter <= 5) {
   counter <- counter + 1
 }
 #---------------------------------------------3/6/2024-------------------------------
+#binary search in R
 
+# Binary search function
+binary_search <- function(vec, target) {
+  left <- 1
+  right <- length(vec)
+  
+  while (left <= right) {
+    mid <- floor((left + right) / 2)
+    
+    if (vec[mid] == target) {
+      return(mid)  # Target found, return its index
+    } else if (vec[mid] < target) {
+      left <- mid + 1  # Narrow search to upper half
+    } else {
+      right <- mid - 1  # Narrow search to lower half
+    }
+  }
+  
+  return(-1)  # Target not found
+}
+
+
+# Sorted vector
+sorted_vec <- c(1, 3, 5, 7, 9, 11, 13, 15, 17, 19)
+
+# Target value to search
+target_value <- 7
+
+# Perform binary search
+result <- binary_search(sorted_vec, target_value)
+
+# Print result
+if (result != -1) {
+  print(paste("Target found at index:", result))
+} else {
+  print("Target not found")
+}
+
+
+#-----------------------------------------------6/4/2024---------------------
 # write some common distributions
 
 
