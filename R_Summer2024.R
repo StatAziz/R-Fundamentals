@@ -983,6 +983,34 @@ if (result != -1) {
 
 
 #-----------------------------------------------6/4/2024---------------------
+# linear search in R
+
+# Define the linear search function
+linear_search <- function(vec, target) {
+  for (i in seq_along(vec)) {
+    if (vec[i] == target) {
+      return(i)  # Return the index of the target value
+    }
+  }
+  return(-1)  # Return -1 if the target value is not found
+}
+
+# Example usage
+sample_vector <- c(10, 20, 30, 40, 50)
+target_value <- 30
+
+# Call the linear search function
+result <- linear_search(sample_vector, target_value)
+
+# Print the result
+if (result != -1) {
+  cat("Target value", target_value, "found at index", result, "\n")
+} else {
+  cat("Target value", target_value, "not found in the vector\n")
+}
+
+
+
 # write some common distributions
 
 
