@@ -1009,6 +1009,33 @@ if (result != -1) {
   cat("Target value", target_value, "not found in the vector\n")
 }
 
+#--------------------------6/5/2024--------------------------------------
+#DSA algorithm
+# Bubble sort algoritm
+
+# Define the Bubble Sort function
+bubble_sort <- function(vec) {
+  n <- length(vec)
+  for (i in 1:(n-1)) {
+    for (j in 1:(n-i)) {
+      if (vec[j] > vec[j+1]) {
+        # Swap elements if they are in the wrong order
+        temp <- vec[j]
+        vec[j] <- vec[j+1]
+        vec[j+1] <- temp
+      }
+    }
+  }
+  return(vec)
+}
+
+# Example usage
+unsorted_vector <- c(64, 34, 25, 12, 22, 11, 90)
+sorted_vector <- bubble_sort(unsorted_vector)
+
+# Print the result
+cat("Unsorted vector: ", unsorted_vector, "\n")
+cat("Sorted vector: ", sorted_vector, "\n")
 
 
 # write some common distributions
