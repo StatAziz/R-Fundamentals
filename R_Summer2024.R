@@ -1036,6 +1036,67 @@ sorted_vector <- bubble_sort(unsorted_vector)
 # Print the result
 cat("Unsorted vector: ", unsorted_vector, "\n")
 cat("Sorted vector: ", sorted_vector, "\n")
+#-------------------------------------6/6/2024----------------------------------
+
+#object oriented programming
+
+## 1.Define the construction function
+# Constructor function for BankAccount class
+BankAccount <- function(owner, balance = 0) {
+  account <- list(owner = owner, balance = balance)
+  class(account) <- "BankAccount"
+  return(account)
+}
+
+##2.Define Methods
+# Method to deposit money
+deposit <- function(account, amount) {
+  UseMethod("deposit", account)
+}
+
+# Specific method for BankAccount class
+deposit.BankAccount <- function(account, amount) {
+  account$balance <- account$balance + amount
+  return(account)
+}
+
+# Method to withdraw money
+withdraw <- function(account, amount) {
+  UseMethod("withdraw", account)
+}
+
+# Specific method for BankAccount class
+withdraw.BankAccount <- function(account, amount) {
+  if (amount > account$balance) {
+    stop("Insufficient funds")
+  }
+  account$balance <- account$balance - amount
+  return(account)
+}
+
+# Method to print account details
+print.BankAccount <- function(account) {
+  cat("Account owner:", account$owner, "\n")
+  cat("Account balance:", account$balance, "\n")
+}
+
+##3.Example Usage
+# Create a new bank account
+my_account <- BankAccount("John Doe", 100)
+
+# Print account details
+print(my_account)
+
+# Deposit money
+my_account <- deposit(my_account, 50)
+print(my_account)
+
+# Withdraw money
+my_account <- withdraw(my_account, 30)
+print(my_account)
+#----------------------------
+# Attempt to withdraw more than the balance
+# my_account <- withdraw(my_account, 150)  # This will raise an error
 
 
 # write some common distributions
