@@ -1099,6 +1099,62 @@ print(my_account)
 # my_account <- withdraw(my_account, 150)  # This will raise an error
 
 
-# write some common distributions
+#--------------------------------6-7-2024---------------------
+
+#Support Vector Machine
+# Install and load required package
+install.packages("e1071")
+library(e1071)
+
+# Load the Iris dataset
+data(iris)
+
+# Subset the data to include only setosa and versicolor species
+iris_subset <- subset(iris, Species != "virginica")
+# Convert Species to a factor with levels setosa and versicolor
+iris_subset$Species <- factor(iris_subset$Species, levels = c("setosa", "versicolor"))
+
+# Train-test split
+set.seed(123)
+train_indices <- sample(1:nrow(iris_subset), 0.7 * nrow(iris_subset))
+train_data <- iris_subset[train_indices, ]
+test_data <- iris_subset[-train_indices, ]
+
+# Train the SVM model
+svm_model <- svm(Species ~ ., data = train_data, kernel = "linear", cost = 1)
+print(svm_model)
+
+# Make predictions
+predictions <- predict(svm_model, test_data)
+
+# Evaluate the model
+confusion_matrix <- table(Predicted = predictions, Actual = test_data$Species)
+print(confusion_matrix)
+accuracy <- sum(diag(confusion_matrix)) / sum(confusion_matrix)
+print(paste("Accuracy:", round(accuracy, 2)))
 
 
+# Visualization 
+
+# Plotting the data
+plot(iris_subset[, 1:2], col = as.integer(iris_subset$Species), pch = 19)
+points(test_data[, 1:2], col = as.integer(predictions), pch = 4)
+
+# Add decision boundary
+make.grid <- function(x, n = 100) {
+  grange <- apply(x, 2, range)
+  x1 <- seq(from = grange[1, 1], to = grange[2, 1], length = n)
+  x2 <- seq(from = grange[1, 2], to = grange[2, 2], length = n)
+  expand.grid(Sepal.Length = x1, Sepal.Width = x2)
+}
+
+# Generate grid points
+grid <- make.grid(train_data[, 1:2])
+grid_pred <- predict(svm_model, grid)
+
+# Plot the decision boundary
+contour(unique(grid$Sepal.Length), unique(grid$Sepal.Width), 
+        matrix(as.numeric(grid_pred), length(unique(grid$Sepal.Length)), 
+               length(unique(grid$Sepal.Width))), add = TRUE, drawlabels = FALSE)
+
+#----------------------------------------------------
