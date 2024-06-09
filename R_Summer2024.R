@@ -1158,3 +1158,70 @@ contour(unique(grid$Sepal.Length), unique(grid$Sepal.Width),
                length(unique(grid$Sepal.Width))), add = TRUE, drawlabels = FALSE)
 
 #----------------------------------------------------
+
+#image classification
+# Install and Load Required Packages
+
+install.packages("keras")
+library(keras)
+
+# Prepare the Data
+#install tensorflow
+
+# Install the tensorflow package
+install.packages("tensorflow")
+
+# Load the tensorflow package
+library(tensorflow)
+
+# Install TensorFlow
+install_tensorflow()
+
+library(tensorflow)
+
+# Verify TensorFlow installation
+tf$constant("Hello, TensorFlow!")
+
+library(keras)
+# Install and load required packages
+install.packages("keras")
+library(keras)
+
+# Load the MNIST dataset
+mnist <- dataset_mnist()
+c(x_train, y_train) %<-% mnist$train
+c(x_test, y_test) %<-% mnist$test
+
+# Normalize the images to values between 0 and 1
+x_train <- x_train / 255
+x_test <- x_test / 255
+
+# Reshape the data to fit the model: [number of samples, image width, image height, number of channels]
+x_train <- array_reshape(x_train, c(nrow(x_train), 28, 28, 1))
+x_test <- array_reshape(x_test, c(nrow(x_test), 28, 28, 1))
+
+# Convert class vectors to binary class matrices (one-hot encoding)
+y_train <- to_categorical(y_train, 10)
+y_test <- to_categorical(y_test, 10)
+
+# Define the model
+model <- keras_model_sequential() %>%
+  layer_conv_2d(filters = 32, kernel_size = c(3, 3), padding = "same", input_shape = c(28, 28, 1)) %>%
+  layer_activation("relu") %>%
+  layer_conv_2d(filters = 32, kernel_size = c(3, 3)) %>%
+  layer_activation("relu") %>%
+  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
+  layer_dropout(0.25) %>%
+  layer_conv_2d(filters = 64, kernel_size = c(3, 3), padding = "same") %>%
+  layer_activation("relu") %>%
+  layer_conv_2d(filters = 64, kernel_size = c(3, 3)) %>%
+  layer_activation("relu") %>%
+  layer_max_pooling_2d(pool_size = c(2, 2)) %>%
+  layer_dropout(0.25) %>%
+  layer_flatten() %>%
+  layer_dense(units = 512) %>%
+  layer_activation("relu") %>%
+  layer_dropout(0.5) %>%
+  layer_dense(units = 10) %>%
+  layer_activation("softmax")
+
