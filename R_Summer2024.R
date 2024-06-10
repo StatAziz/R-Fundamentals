@@ -1157,7 +1157,7 @@ contour(unique(grid$Sepal.Length), unique(grid$Sepal.Width),
         matrix(as.numeric(grid_pred), length(unique(grid$Sepal.Length)), 
                length(unique(grid$Sepal.Width))), add = TRUE, drawlabels = FALSE)
 
-#----------------------------------------------------
+#----------------------------------------------------6/8/2024------------------
 
 #image classification
 # Install and Load Required Packages
@@ -1225,3 +1225,23 @@ model <- keras_model_sequential() %>%
   layer_dense(units = 10) %>%
   layer_activation("softmax")
 
+#------------------------------6/9/2024----------------------
+
+
+# Install and load the caret package
+install.packages("caret")
+library(caret)
+
+# Load the iris dataset
+data(iris)
+
+# Define the control using a 5-fold cross-validation
+train_control <- trainControl(method = "cv", number = 5)
+
+# Train the model
+model <- train(Species ~ ., data = iris, method = "rpart",
+               trControl = train_control)
+
+# Print the results
+print(model)
+#-----------------------------------6/10/2024----------------------
