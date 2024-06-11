@@ -1245,3 +1245,31 @@ model <- train(Species ~ ., data = iris, method = "rpart",
 # Print the results
 print(model)
 #-----------------------------------6/10/2024----------------------
+# Hierarchical Clustering
+# Load the iris dataset
+data(iris)
+
+# Remove the species column for clustering
+iris_data <- iris[, -5]
+
+# Compute the distance matrix
+distance_matrix <- dist(iris_data, method = "euclidean")
+
+# Perform hierarchical clustering
+hc <- hclust(distance_matrix, method = "ward.D2")
+
+# Plot the dendrogram
+plot(hc, labels = iris$Species, main = "Hierarchical Clustering Dendrogram")
+
+# Cut the dendrogram into 3 clusters
+clusters <- cutree(hc, k = 3)
+
+# Add the clusters to the original data
+iris$Cluster <- as.factor(clusters)
+
+# Plot the clusters
+library(ggplot2)
+ggplot(iris, aes(Petal.Length, Petal.Width, color = Cluster)) +
+  geom_point() +
+  labs(title = "Hierarchical Clustering of Iris Data")
+#---------------------------6/11/2024----------------------------
