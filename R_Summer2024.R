@@ -1273,3 +1273,24 @@ ggplot(iris, aes(Petal.Length, Petal.Width, color = Cluster)) +
   geom_point() +
   labs(title = "Hierarchical Clustering of Iris Data")
 #---------------------------6/11/2024----------------------------
+# K-means clustering
+
+# Load the iris dataset
+data(iris)
+
+# Remove the species column for clustering
+iris_data <- iris[, -5]
+
+# Perform k-means clustering with 3 clusters
+set.seed(123)  # Set seed for reproducibility
+kmeans_result <- kmeans(iris_data, centers = 3, nstart = 25)
+
+# Add the cluster results to the original data
+iris$Cluster <- as.factor(kmeans_result$cluster)
+
+# Plot the clusters
+library(ggplot2)
+ggplot(iris, aes(Petal.Length, Petal.Width, color = Cluster)) +
+  geom_point() +
+  labs(title = "K-Means Clustering of Iris Data")
+#--------------------------6/12/2024----------------------------------
