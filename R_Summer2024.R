@@ -1294,3 +1294,41 @@ ggplot(iris, aes(Petal.Length, Petal.Width, color = Cluster)) +
   geom_point() +
   labs(title = "K-Means Clustering of Iris Data")
 #--------------------------6/12/2024----------------------------------
+
+# web scrapping
+
+# Install and load the required packages
+install.packages("rvest")
+install.packages("dplyr")
+library(rvest)
+library(dplyr)
+
+# Specify the URL of the web page to scrape
+url <- "http://books.toscrape.com/"
+
+# Read the content of the web page
+webpage <- read_html(url)
+
+# Extract the titles of the books
+titles <- webpage %>%
+  html_nodes(".product_pod h3 a") %>%
+  html_attr("title")
+
+# Extract the prices of the books
+prices <- webpage %>%
+  html_nodes(".price_color") %>%
+  html_text()
+
+# Clean the prices to remove the currency symbol and convert to numeric
+prices <- gsub("£", "", prices) %>%
+  as.numeric()
+
+# Combine the titles and prices into a data frame
+books <- data.frame(
+  Title = titles,
+  Price = prices
+)
+
+# Print the first few rows of the data frame
+print(head(books))
+#------------------------------------6/13/2024----------------------------
