@@ -1332,3 +1332,31 @@ books <- data.frame(
 # Print the first few rows of the data frame
 print(head(books))
 #------------------------------------6/13/2024----------------------------
+
+# write r code to extract api information
+
+# Install and load required packages
+install.packages("rvest")
+install.packages("stringr")
+library(rvest)
+library(stringr)
+
+# Specify the URL of the web page to scrape
+url <- "http://books.toscrape.com/"  # Replace with the target URL
+
+# Read the content of the web page
+webpage <- read_html(url)
+
+# Extract all URLs from the page
+all_urls <- webpage %>%
+  html_nodes("a") %>%
+  html_attr("href")
+
+# Filter for potential API endpoints
+# This is a simplistic heuristic based approach to find common API patterns
+api_endpoints <- all_urls %>%
+  str_subset("/api/|/v1/|/v2/|/data/|/json/|/xml/")
+
+# Print the identified potential API endpoints
+print(api_endpoints)
+#---------------------------------------------------------
