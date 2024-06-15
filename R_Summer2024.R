@@ -1359,4 +1359,18 @@ api_endpoints <- all_urls %>%
 
 # Print the identified potential API endpoints
 print(api_endpoints)
-#---------------------------------------------------------
+#----------------------------------6/14/2024-----------------------
+# dictionary in R
+# Create a named list
+dict <- list(a = 1, b = 2, c = 3)
+
+# Access elements by name
+print(dict$a)  # Output: 1
+print(dict$b)  # Output: 2
+
+# Add a new key-value pair
+dict$d <- 4
+
+# Print the updated list
+print(dict)  # Output: $a: 1, $b: 2, $c: 3, $d: 4
+#-----------------------------------------------------------
