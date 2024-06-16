@@ -1373,4 +1373,24 @@ dict$d <- 4
 
 # Print the updated list
 print(dict)  # Output: $a: 1, $b: 2, $c: 3, $d: 4
-#-----------------------------------------------------------
+#-----------------------------6/15/2024------------------------------
+# class in R
+# Define a constructor for the S3 class
+animal <- function(name, species) {
+  obj <- list(name = name, species = species)
+  class(obj) <- "animal"
+  return(obj)
+}
+
+# Define a method for the S3 class
+speak.animal <- function(obj) {
+  paste(obj$name, "says hello!")
+}
+
+# Create an instance of the S3 class
+dog <- animal("Buddy", "Dog")
+print(speak(dog))  # Output: Buddy says hello!
+print(dog$name)    # Output: Buddy
+print(dog$species) # Output: Dog
+
+#----------------------------------------------------------------
