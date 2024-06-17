@@ -1393,4 +1393,30 @@ print(speak(dog))  # Output: Buddy says hello!
 print(dog$name)    # Output: Buddy
 print(dog$species) # Output: Dog
 
-#----------------------------------------------------------------
+#-----------------------6/16/2024-----------------------------------------
+# creating Fibonacci series in R
+# Function to create Fibonacci series
+fibonacci <- function(n) {
+  # Check if the input is valid
+  if (n <= 0) {
+    stop("The number of terms must be a positive integer")
+  }
+  
+  # Initialize the first two terms
+  fib_series <- numeric(n)
+  fib_series[1] <- 0
+  if (n > 1) {
+    fib_series[2] <- 1
+  }
+  
+  # Calculate the rest of the series
+  for (i in 3:n) {
+    fib_series[i] <- fib_series[i - 1] + fib_series[i - 2]
+  }
+  
+  return(fib_series)
+}
+
+# Example usage
+print(fibonacci(10)) # Output: 0 1 1 2 3 5 8 13 21 34
+#--------------------------------------6/17/2024-----------------------
