@@ -1420,3 +1420,41 @@ fibonacci <- function(n) {
 # Example usage
 print(fibonacci(10)) # Output: 0 1 1 2 3 5 8 13 21 34
 #--------------------------------------6/17/2024-----------------------
+
+#poisson counter
+
+# Load necessary library
+library(ggplot2)
+
+# Function to create Poisson counter
+poisson_counter <- function(lambda, time_interval, num_intervals) {
+  # Generate Poisson-distributed random numbers for each interval
+  poisson_counts <- rpois(num_intervals, lambda * time_interval)
+  
+  # Create a data frame to store the results
+  results <- data.frame(
+    Interval = 1:num_intervals,
+    Counts = poisson_counts
+  )
+  
+  # Return the results
+  return(results)
+}
+
+# Example usage
+lambda <- 5  # Average rate (events per unit time)
+time_interval <- 1  # Length of each time interval
+num_intervals <- 10  # Number of intervals
+
+# Generate the Poisson counter
+poisson_counts <- poisson_counter(lambda, time_interval, num_intervals)
+
+# Print the results
+print(poisson_counts)
+
+# Plot the results
+ggplot(poisson_counts, aes(x = Interval, y = Counts)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Poisson Counts per Interval", x = "Interval", y = "Counts") +
+  theme_minimal()
+#---------------------------------------------6/17/2024--------------
