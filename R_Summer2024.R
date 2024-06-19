@@ -1458,3 +1458,38 @@ ggplot(poisson_counts, aes(x = Interval, y = Counts)) +
   labs(title = "Poisson Counts per Interval", x = "Interval", y = "Counts") +
   theme_minimal()
 #---------------------------------------------6/17/2024--------------
+# Rainbow in R
+# Load necessary libraries
+library(ggplot2)
+library(dplyr)
+
+# Function to create rainbow arcs
+create_rainbow_data <- function() {
+  colors <- c("red", "orange", "yellow", "green", "blue", "#4B0082", "violet")  # Hex code for indigo
+  n <- length(colors)
+  
+  rainbow_data <- data.frame()
+  
+  for (i in 1:n) {
+    theta <- seq(0, pi, length.out = 100)
+    radius <- n - i + 1
+    x <- radius * cos(theta)
+    y <- radius * sin(theta)
+    arc <- data.frame(x = x, y = y, color = colors[i])
+    rainbow_data <- rbind(rainbow_data, arc)
+  }
+  
+  return(rainbow_data)
+}
+
+# Create rainbow data
+rainbow_data <- create_rainbow_data()
+
+# Plot the rainbow
+ggplot(rainbow_data, aes(x = x, y = y, color = color, group = color)) +
+  geom_line(linewidth = 10) +
+  scale_color_identity() +
+  theme_void() +
+  theme(legend.position = "none") +
+  coord_fixed()
+#-------------------------------6/18/2024-------------------------------
