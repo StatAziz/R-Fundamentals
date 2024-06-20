@@ -1457,7 +1457,7 @@ ggplot(poisson_counts, aes(x = Interval, y = Counts)) +
   geom_bar(stat = "identity") +
   labs(title = "Poisson Counts per Interval", x = "Interval", y = "Counts") +
   theme_minimal()
-#---------------------------------------------6/17/2024--------------
+#---------------------------------------------6/18/2024--------------
 # Rainbow in R
 # Load necessary libraries
 library(ggplot2)
@@ -1492,4 +1492,56 @@ ggplot(rainbow_data, aes(x = x, y = y, color = color, group = color)) +
   theme_void() +
   theme(legend.position = "none") +
   coord_fixed()
-#-------------------------------6/18/2024-------------------------------
+#-------------------------------6/19/2024-------------------------------
+# Draw X T W A 
+
+library(ggplot2)
+
+# Function to plot a letter
+plot_letter <- function(data, title) {
+  ggplot(data, aes(x, y)) +
+    geom_path(size = 2) +
+    geom_point(size = 4) +
+    xlim(0, 10) +
+    ylim(0, 10) +
+    ggtitle(title) +
+    theme_void() +
+    theme(plot.title = element_text(hjust = 0.5, size = 20))
+}
+
+# Data for the letter X
+data_X <- data.frame(
+  x = c(1, 9, NA, 1, 9),
+  y = c(1, 9, NA, 9, 1)
+)
+
+# Data for the letter W
+data_W <- data.frame(
+  x = c(1, 2.5, 5, 7.5, 9),
+  y = c(9, 1, 5, 1, 9)
+)
+
+# Data for the letter T
+data_T <- data.frame(
+  x = c(1, 9, NA, 5, 5),
+  y = c(9, 9, NA, 9, 1)
+)
+
+# Data for the letter A
+data_A <- data.frame(
+  x = c(1, 5, 9, NA, 3, 7),
+  y = c(1, 9, 1, NA, 5, 5)
+)
+
+# Plot the letters
+plot_X <- plot_letter(data_X, "X")
+plot_W <- plot_letter(data_W, "W")
+plot_T <- plot_letter(data_T, "T")
+plot_A <- plot_letter(data_A, "A")
+
+# Display the plots
+plot_X
+plot_W
+plot_T
+plot_A
+#--------------------------------6/20/2024--------------------
