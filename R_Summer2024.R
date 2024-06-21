@@ -1545,3 +1545,28 @@ plot_W
 plot_T
 plot_A
 #--------------------------------6/20/2024--------------------
+# sine wave animation in R
+install.packages("ggplot2")
+install.packages("gganimate")
+install.packages("gifski") # for rendering the animation
+library(ggplot2)
+library(gganimate)
+
+# Generate data for the animation
+data <- data.frame(
+  x = seq(0, 2 * pi, length.out = 100),
+  y = sin(seq(0, 2 * pi, length.out = 100))
+)
+
+# Create a ggplot object
+p <- ggplot(data, aes(x = x, y = y)) +
+  geom_point(size = 3, color = "blue") +
+  labs(title = 'Sine Wave Animation', x = 'X-axis', y = 'Y-axis') +
+  theme_minimal()
+
+# Add animation with transition
+animation <- p + transition_reveal(along = x)
+
+# Render and save the animation
+animate(animation, nframes = 100, fps = 10, renderer = gifski_renderer("sine_wave_animation.gif"))
+#------------------------6/21/2024-------------------
