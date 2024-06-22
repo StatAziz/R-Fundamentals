@@ -1570,3 +1570,125 @@ animation <- p + transition_reveal(along = x)
 # Render and save the animation
 animate(animation, nframes = 100, fps = 10, renderer = gifski_renderer("sine_wave_animation.gif"))
 #------------------------6/21/2024-------------------
+# snake game
+install.packages("shiny")
+install.packages("shinyjs")
+
+library(shiny)
+library(shinyjs)
+
+# Define the UI
+ui <- fluidPage(
+  useShinyjs(),
+  tags$head(
+    tags$style(
+      HTML("
+        #game {
+          font-size: 0;
+          line-height: 0;
+          white-space: nowrap;
+          overflow: hidden;
+        }
+        .cell {
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background: white;
+        }
+        .snake {
+          background: green;
+        }
+        .food {
+          background: red;
+        }
+      ")
+    )
+  ),
+  div(id = "game")
+)
+
+# Define the server logic
+server <- function(input, output, session) {
+  grid_size <- 20
+  update_interval <- 200 # ms
+  
+  # Initialize the game state
+  game_state <- reactiveValues(
+    snake = list(c(10, 10)),
+    direction = c(0, 1),
+    food = c(15, 15),
+    score = 0,
+    game_over = FALSE
+  )
+  
+  # Create the game grid
+  observe({
+    cells <- matrix("", nrow = grid_size, ncol = grid_size)
+    for (pos in game_state$snake) {
+      cells[pos[1], pos[2]] <- "snake"
+    }
+    cells[game_state$food[1], game_state$food[2]] <- "food"
+    html <- apply(cells, 1, function(row) {
+      paste0(lapply(row, function(cell) {
+        paste0("<div class='cell ", cell, "'></div>")
+      }), collapse = "")
+    })
+    runjs(paste0("$('#game').html('", paste0(html, collapse = ""), "')"))
+  })
+  
+  # Update the game state
+  update_game <- reactiveTimer(update_interval, session)
+  observeEvent(update_game(), {
+    if (game_state$game_over) return()
+    
+    # Move the snake
+    new_head <- game_state$snake[[1]] + game_state$direction
+    if (new_head[1] < 1 || new_head[1] > grid_size || new_head[2] < 1 || new_head[2]] > grid_size || any(sapply(game_state$snake, function(seg) all(seg == new_head)))) {
+      game_state$game_over <- TRUE
+      showModal(modalDialog(
+        title = "Game Over",
+        paste("Score:", game_state$score),
+        easyClose = TRUE,
+        footer = NULL
+      ))
+      return()
+    }
+    
+    game_state$snake <- append(list(new_head), game_state$snake)
+    
+    # Check if snake ate the food
+    if (all(new_head == game_state$food)) {
+      game_state$score <- game_state$score + 1
+      game_state$food <- sample(1:grid_size, 2)
+    } else {
+      game_state$snake <- game_state$snake[-length(game_state$snake)]
+    }
+  })
+  
+  # Handle keyboard input
+  observeEvent(input$key, {
+    new_direction <- switch(input$key,
+                            ArrowUp = c(-1, 0),
+                            ArrowDown = c(1, 0),
+                            ArrowLeft = c(0, -1),
+                            ArrowRight = c(0, 1),
+                            game_state$direction)
+    if (sum(abs(new_direction)) != 1) return() # Ignore invalid directions
+    game_state$direction <- new_direction
+  }, ignoreNULL = TRUE, ignoreInit = TRUE)
+  
+  # Initialize keyboard input
+  runjs("
+    $(document).on('keydown', function(e) {
+      Shiny.setInputValue('key', e.key);
+    });
+  ")
+}
+
+# Run the application
+shinyApp(ui = ui, server = server)
+#---------------------6/22/2024------------------------------
+
+
+
+
