@@ -1688,7 +1688,38 @@ server <- function(input, output, session) {
 # Run the application
 shinyApp(ui = ui, server = server)
 #---------------------6/22/2024------------------------------
+# outlier detections
+# using boxplots
+# Sample data
+data <- c(10, 12, 13, 15, 15, 16, 18, 20, 22, 23, 25, 30, 35, 100)
 
+# Use boxplot.stats to identify outliers
+outliers <- boxplot.stats(data)$out
+print(outliers)
+
+# using dplyr package
+library(dplyr)
+
+# Sample dataframe
+df <- data.frame(
+  id = 1:14,
+  value = c(10, 12, 13, 15, 15, 16, 18, 20, 22, 23, 25, 30, 35, 100)
+)
+
+# Calculate IQR and identify outliers
+df <- df %>%
+  mutate(
+    Q1 = quantile(value, 0.25),
+    Q3 = quantile(value, 0.75),
+    IQR = Q3 - Q1,
+    lower_bound = Q1 - 1.5 * IQR,
+    upper_bound = Q3 + 1.5 * IQR,
+    is_outlier = value < lower_bound | value > upper_bound
+  )
+
+outliers <- df %>% filter(is_outlier)
+print(outliers)
+#-----------------------6/23/2024------------------------------------
 
 
 
