@@ -1720,6 +1720,19 @@ df <- df %>%
 outliers <- df %>% filter(is_outlier)
 print(outliers)
 #-----------------------6/23/2024------------------------------------
+# finding factorials in R
+# using recursive approach
+# Recursive factorial function
+factorial_recursive <- function(n) {
+  if (n == 0) {
+    return(1)
+  } else {
+    return(n * factorial_recursive(n - 1))
+  }
+}
+
+# Test the function
+factorial_recursive(5)  # Should return 120
 
 
 
