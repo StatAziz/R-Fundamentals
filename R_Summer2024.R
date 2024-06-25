@@ -1735,4 +1735,29 @@ factorial_recursive <- function(n) {
 factorial_recursive(5)  # Should return 120
 
 
+fa <- function(n){
+  if (n==0){return (1)}
+  else{
+  return(n*fa(n-1))}
+  
+}
 
+fa(4)
+#----------------------6/24/2024----------------------
+# Iterative factorial function
+factorial_iterative <- function(n) {
+  if (n < 0) {
+    stop("Factorial is not defined for negative numbers")
+  }
+  
+  result <- 1
+  for (i in 1:n) {
+    result <- result * i
+  }
+  
+  return(result)
+}
+
+# Test the function
+factorial_iterative(5)  # Should return 120
+#------------------6/25/2024--------------------------
