@@ -1761,3 +1761,21 @@ factorial_iterative <- function(n) {
 # Test the function
 factorial_iterative(5)  # Should return 120
 #------------------6/25/2024--------------------------
+library(purrr)
+
+# Functional factorial function
+factorial_purrr <- function(n) {
+  if (n < 0) {
+    stop("Factorial is not defined for negative numbers")
+  }
+  
+  if (n == 0) {
+    return(1)
+  }
+  
+  return(reduce(1:n, `*`))
+}
+
+# Test the function
+factorial_purrr(5)  # Should return 120
+#-----------------------6/26/2024-------------------------
