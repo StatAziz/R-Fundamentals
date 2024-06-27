@@ -1779,3 +1779,35 @@ factorial_purrr <- function(n) {
 # Test the function
 factorial_purrr(5)  # Should return 120
 #-----------------------6/26/2024-------------------------
+
+# drawing a house using base R plotting
+# Create vectors for the coordinates
+# House body
+
+house_x <- c(2, 2, 8, 8, 2)
+house_y <- c(2, 7, 7, 2, 2)
+
+# Roof
+roof_x <- c(2, 5, 8)
+roof_y <- c(7, 10, 7)
+
+# Door
+door_x <- c(4, 4, 6, 6, 4)
+door_y <- c(2, 4, 4, 2, 2)
+
+# Create an empty plot
+plot(0, 0, type = "n", xlim = c(0, 10), ylim = c(0, 12), xlab = "", ylab = "", axes = FALSE, main = "House")
+
+# Draw the house body
+polygon(house_x, house_y, col = "lightblue", border = "black")
+
+# Draw the roof
+polygon(roof_x, roof_y, col = "brown", border = "black")
+
+# Draw the door
+polygon(door_x, door_y, col = "darkred", border = "black")
+
+# Add axes
+axis(1, at = seq(0, 10, by = 1))
+axis(2, at = seq(0, 12, by = 1))
+#-------------------------------------
