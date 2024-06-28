@@ -1810,4 +1810,33 @@ polygon(door_x, door_y, col = "darkred", border = "black")
 # Add axes
 axis(1, at = seq(0, 10, by = 1))
 axis(2, at = seq(0, 12, by = 1))
-#-------------------------------------
+#-------------------------------------6/27/2024--------
+# draw house using ggplot
+library(ggplot2)
+
+# Create data frames for the coordinates
+house_df <- data.frame(
+  x = c(2, 2, 8, 8, 2),
+  y = c(2, 7, 7, 2, 2)
+)
+
+roof_df <- data.frame(
+  x = c(2, 5, 8),
+  y = c(7, 10, 7)
+)
+
+door_df <- data.frame(
+  x = c(4, 4, 6, 6, 4),
+  y = c(2, 4, 4, 2, 2)
+)
+
+# Create the plot
+ggplot() +
+  geom_polygon(data = house_df, aes(x = x, y = y), fill = "lightblue", color = "black") +
+  geom_polygon(data = roof_df, aes(x = x, y = y), fill = "brown", color = "black") +
+  geom_polygon(data = door_df, aes(x = x, y = y), fill = "darkred", color = "black") +
+  scale_x_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 1)) +
+  scale_y_continuous(limits = c(0, 12), breaks = seq(0, 12, by = 1)) +
+  theme_minimal() +
+  ggtitle("House")
+#-----------------------6/28/2024----------------------
