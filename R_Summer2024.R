@@ -1840,3 +1840,28 @@ ggplot() +
   theme_minimal() +
   ggtitle("House")
 #-----------------------6/28/2024----------------------
+
+# find prime numbers upto n
+
+find_primes <- function(n) {
+  if (n < 2) {
+    return(integer(0))
+  }
+  
+  primes <- rep(TRUE, n)
+  primes[1] <- FALSE  # 1 is not a prime number
+  
+  for (i in 2:sqrt(n)) {
+    if (primes[i]) {
+      primes[seq(i^2, n, i)] <- FALSE
+    }
+  }
+  
+  which(primes)
+}
+
+# Example usage:
+n <- 100  # You can change this value to any positive integer
+prime_numbers <- find_primes(n)
+print(prime_numbers)
+#-----------------------------6/30/2024--------------------
