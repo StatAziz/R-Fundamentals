@@ -1865,3 +1865,58 @@ n <- 100  # You can change this value to any positive integer
 prime_numbers <- find_primes(n)
 print(prime_numbers)
 #-----------------------------6/30/2024--------------------
+# interactive plot of prime numbers
+install.packages("plotly")
+
+library(plotly)
+
+# Function to find prime numbers up to n
+find_primes <- function(n) {
+  if (n < 2) {
+    return(integer(0))
+  }
+  
+  primes <- rep(TRUE, n)
+  primes[1] <- FALSE  # 1 is not a prime number
+  
+  for (i in 2:sqrt(n)) {
+    if (primes[i]) {
+      primes[seq(i^2, n, i)] <- FALSE
+    }
+  }
+  
+  which(primes)
+}
+
+# Set the value of n
+n <- 100
+
+# Find prime numbers up to n
+prime_numbers <- find_primes(n)
+
+# Create a data frame for plotting
+prime_data <- data.frame(
+  index = 1:length(prime_numbers),
+  prime = prime_numbers
+)
+
+# Create an interactive plot using plotly
+plot <- plot_ly(
+  data = prime_data,
+  x = ~index,
+  y = ~prime,
+  type = 'scatter',
+  mode = 'markers',
+  marker = list(size = 10, color = 'blue'),
+  text = ~paste('Prime:', prime),
+  hoverinfo = 'text'
+) %>%
+  layout(
+    title = paste('Prime Numbers up to', n),
+    xaxis = list(title = 'Index'),
+    yaxis = list(title = 'Prime Numbers')
+  )
+
+# Show the plot
+plot
+
