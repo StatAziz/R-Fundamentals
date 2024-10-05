@@ -1918,5 +1918,5 @@ plot <- plot_ly(
   )
 
 # Show the plot
-plot
+plot(3,4)
 
