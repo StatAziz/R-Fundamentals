@@ -217,7 +217,8 @@ f6()
 #---------------5/18/2024-------------------------------------------------------------------------
 # map function in R from https://www.statology.org/map-function-in-r/
 
-# The map() function from the purrr package in R can be used to apply some function to each element in a vector or list and return a list as a result.
+# The map() function from the purrr package in R can be used to apply some 
+#function to each element in a vector or list and return a list as a result.
 # 
 # This function uses the following basic syntax:
 #   
@@ -455,6 +456,17 @@ means <- nested_df %>%
   mutate(mean_values = map(data, ~ summarise(.x, mean_value1 = mean(value1), mean_value2 = mean(value2))))
 
 print(means)
+
+#
+nested_df<-df %>% group_by(group)%>%nest()
+nested_df
+result <- nested_df %>%
+  +     mutate(mean_values = map(data, ~ tibble(
+    +         mean_value1 = mean(.x$value1),
+    +         mean_value2 = mean(.x$value2)
+    +     )))
+result
+result%>%unnest(mean_values)
 
 # you can unnest if needed
 # Unnesting the means
